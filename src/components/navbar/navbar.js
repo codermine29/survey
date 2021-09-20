@@ -1,7 +1,7 @@
 import React from "react";
-import { Navbar, Container } from 'react-bootstrap';
+import { Navbar, Container, Nav } from 'react-bootstrap';
 
-export default class Nav extends React.Component{
+export default class Nav1 extends React.Component{
     render(){
         return(
             <Navbar bg="dark" variant="dark">
@@ -16,7 +16,11 @@ export default class Nav extends React.Component{
               />{' '}
             Survey
           </Navbar.Brand>
-
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Nav.Link href="#home">Create</Nav.Link>
+            </Nav>
+          </Navbar.Collapse>
           </Container>
           </Navbar>
         );
