@@ -1,6 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Nav from '../navbar/navbar';
+import Nav1 from '../navbar/navbar';
 import {
   BrowserRouter as Router,
   Route,
@@ -9,7 +9,7 @@ import {
 function App() {
   return (
     <div className="App">
-      <Nav></Nav>
+      <Nav1></Nav1>
       <Router>
       </Router>
     </div>
