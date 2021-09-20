@@ -1,6 +1,6 @@
-import './App.css';
+import './App.jsx';
 import 'bootstrap/dist/css/bootstrap.min.css';
-import Nav from '../navbar/navbar';
+import Nav from './navbar/navbar';
 import {
   BrowserRouter as Router,
   Route,
