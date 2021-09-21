@@ -3,7 +3,7 @@ import { Flex, Box, Text } from '@blockstack/ui';
 import { getPerson, getUserData, userSession } from '../auth';
 //import { Logo } from './public/assets/images/logo';
 
-const Auth = () => {
+export const Auth = () => {
   if (!userSession.isUserSignedIn()) {
     return null;
   }

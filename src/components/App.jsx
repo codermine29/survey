@@ -3,7 +3,7 @@ import { Signin } from './Signin';
 import { Header } from './Header';
 import { ThemeProvider, theme, CSSReset, ToastProvider } from '@blockstack/ui';
 import { userSession } from '../auth';
-import { Navbar } from 'react-bootstrap';
+import App2 from './app/App'
 
 export default class App extends Component {
   state = {
@@ -22,8 +22,7 @@ export default class App extends Component {
         <ToastProvider>
           <div className="site-wrapper">
             <div className="site-wrapper-inner">
-              <Header />
-              {!userSession.isUserSignedIn() ? <Signin /> : <Navbar />}    {/*Todolist before*/}
+              {!userSession.isUserSignedIn() ? <Signin /> : <App2/>}    {/*Todolist before*/}
             </div>
           </div>
         </ToastProvider>
