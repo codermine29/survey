@@ -5,15 +5,24 @@ import {
   BrowserRouter as Router,
   Route,
 } from "react-router-dom";
+import Switch from 'react-bootstrap/esm/Switch';
 
-function App() {
-  return (
-    <div className="App">
-      <Nav1></Nav1>
-      <Router>
-      </Router>
-    </div>
-  );
-}
+
+
+
+  function App2() {
+    return (
+      <div className="App">
+        <Router>
+        <Nav1></Nav1>
+            <Switch>
+              <Route path='/create' exact component={CreateSurvey}>
+              </Route>
+            </Switch>
+        </Router>
+      </div>
+    );
+  }
+
  
-export default App;
+export default App2;
