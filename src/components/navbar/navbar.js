@@ -1,7 +1,15 @@
 import React from "react";
-import { Navbar, Container } from 'react-bootstrap';
+import { Navbar, Container, Nav } from 'react-bootstrap';
+import { Flex, Box, Text } from '@blockstack/ui';
+import {Auth} from '../Header'
+import { getPerson, getUserData, userSession } from '../../auth';
+import {
+  BrowserRouter as Router,
+  Route, Link
+} from "react-router-dom";
+ 
+export default class Nav1 extends React.Component{
 
-export default class Nav extends React.Component{
     render(){
         return(
             <Navbar bg="dark" variant="dark">
@@ -16,7 +24,12 @@ export default class Nav extends React.Component{
               />{' '}
             Survey
           </Navbar.Brand>
-
+          <Navbar.Collapse id="basic-navbar-nav">
+            <Nav className="me-auto">
+              <Link to='/create'>Create</Link>
+            </Nav>
+          </Navbar.Collapse>
+          <Auth></Auth>
           </Container>
           </Navbar>
         );
