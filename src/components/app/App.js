@@ -1,7 +1,6 @@
 import './App.css';
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav1 from '../navbar/navbar';
-import CreateSurvey from '../surveyCreate/surveyCreate';
 import {
   BrowserRouter as Router,
   Route,
@@ -24,5 +23,6 @@ import Switch from 'react-bootstrap/esm/Switch';
       </div>
     );
   }
+
  
 export default App2;

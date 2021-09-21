@@ -9,7 +9,6 @@ import {
 } from "react-router-dom";
  
 export default class Nav1 extends React.Component{
-
     render(){
         return(
             <Navbar bg="dark" variant="dark">
@@ -30,6 +29,7 @@ export default class Nav1 extends React.Component{
             </Nav>
           </Navbar.Collapse>
           <Auth></Auth>
+          </Navbar.Collapse>
           </Container>
           </Navbar>
         );
