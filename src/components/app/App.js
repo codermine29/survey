@@ -4,7 +4,11 @@ import Nav1 from '../navbar/navbar';
 import { BrowserRouter as Router, Route} from "react-router-dom";
 import Switch from 'react-bootstrap/esm/Switch';
 import CreateSurvey from '../surveyCreate/surveyCreate';
-import Sidebar from '../sidebar/sidebar.js'
+import Sidebar from '../sidebar/sidebar.js';
+import Dashboard from '../dashboard/dashboard.js';
+import Templates from '../templates/templates.js';
+import Trash from '../trash/trash.js';
+import Settings from '../settings/settings.js';
 
   function App2() {
     return (
@@ -15,6 +19,11 @@ import Sidebar from '../sidebar/sidebar.js'
           <Sidebar/>
           <Switch>
               <Route path='/create' exact component={CreateSurvey}></Route>
+              <Route path='/dashboard' exact component={Dashboard}></Route>
+              <Route path='/templates' exact component={Templates}></Route>
+              <Route path='/mytemplates' exact component={Templates}></Route>
+              <Route path='/trash' exact component={Trash}></Route>
+              <Route path='/settings' exact component={Settings}></Route>
           </Switch>
         </div>
           
