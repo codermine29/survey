@@ -1,12 +1,9 @@
 import React from "react";
 import { Navbar, Container, Nav } from 'react-bootstrap';
-import { Flex, Box, Text } from '@blockstack/ui';
+// import { Flex, Box, Text } from '@blockstack/ui';
 import {Auth} from '../Header'
 import { getPerson, getUserData, userSession } from '../../auth';
-import {
-  BrowserRouter as Router,
-  Route, Link
-} from "react-router-dom";
+import { BrowserRouter as Router, Route, Link } from "react-router-dom";
  
 export default class Nav1 extends React.Component{
     render(){
@@ -29,7 +26,7 @@ export default class Nav1 extends React.Component{
             </Nav>
           </Navbar.Collapse>
           <Auth></Auth>
-          </Navbar.Collapse>
+          {/* </Navbar.Collapse> */}
           </Container>
           </Navbar>
         );
