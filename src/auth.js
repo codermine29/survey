@@ -1,7 +1,7 @@
 import { AppConfig, UserSession, showConnect } from '@stacks/connect';
 import { Person } from '@stacks/profile';
 
-const appConfig = new AppConfig(['store_write', 'publish_data']);
+export const appConfig = new AppConfig(['store_write', 'publish_data']);
 
 export const userSession = new UserSession({ appConfig });
 
@@ -9,7 +9,7 @@ export function authenticate() {
   showConnect({
     appDetails: {
       name: 'Surveys',
-      icon: window.location.origin + '/logo.svg',
+      icon: window.location.origin + 'assets/images/logo.png',
     },
     redirectTo: '/',
     onFinish: () => {

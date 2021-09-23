@@ -22,7 +22,7 @@ export default class Nav1 extends React.Component{
           </Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">
-              <Link to='/create'>Create</Link>
+              <Link className = "btn btn-light" to='/create'>Create</Link>
             </Nav>
           </Navbar.Collapse>
           <Auth></Auth>
