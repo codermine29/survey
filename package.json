@@ -6,6 +6,7 @@
     "@blockstack/ui": "^2.12.14",
     "@stacks/connect": "^6.2.0",
     "@stacks/profile": "^2.0.1",
+    "@stacks/storage": "^2.0.1",
     "@testing-library/jest-dom": "^5.14.1",
     "@testing-library/react": "^11.2.7",
     "@testing-library/user-event": "^12.8.3",

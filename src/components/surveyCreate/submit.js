@@ -3,18 +3,16 @@ import { Container,Row,Col,Nav , Button , Form} from "react-bootstrap";
 export default class Submit extends React.Component {
     constructor(props){
         super(props);
-        this.state={
-            title:'Submit',
-            description:''
-        }
-        this.onTitleChange = this.onTitleChange.bind(this);
+
+        this.onSubmitChange = this.onSubmitChange.bind(this);
         this.onDescriptionChange = this.onDescriptionChange.bind(this);
     }
-    onTitleChange(event){
-        this.setState({title:event.target.value});
+    onSubmitChange(event){
+        this.props.handleSubmitChange(event.target.value,this.props.formSubmit.description)
     }
     onDescriptionChange(event){
-        this.setState({description:event.target.value});
+        this.props.handleSubmitChange(this.props.formSubmit.submit,event.target.value)
+
     }
     render(){
         return(
@@ -22,7 +20,7 @@ export default class Submit extends React.Component {
                 <Col>
                     <Form>
                         <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Control type="Text" placeholder="Submit Button Text" onChange={this.onTitleChange}/>
+                            <Form.Control type="Text" placeholder="Submit Button Text" onChange={this.onSubmitChange}/>
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
@@ -33,11 +31,11 @@ export default class Submit extends React.Component {
                 </Col>
                 <Col>
                     <Col>
-                     <Button variant='outline-danger'> {this.state.title} </Button>
+                     <Button variant='outline-danger'> {this.props.formSubmit.submit} </Button>
                     </Col>
                     <Col>
                         <p>
-                            {this.state.description}
+                            {this.props.formSubmit.description}
                         </p>
                     </Col>
                     <Col>

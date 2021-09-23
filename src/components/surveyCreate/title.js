@@ -3,18 +3,14 @@ import { Container,Row,Col,Nav , Button , Form} from "react-bootstrap";
 export default class Title extends React.Component {
     constructor(props){
         super(props);
-        this.state={
-            title:'',
-            description:''
-        }
         this.onTitleChange = this.onTitleChange.bind(this);
         this.onDescriptionChange = this.onDescriptionChange.bind(this);
     }
     onTitleChange(event){
-        this.setState({title:event.target.value});
+        this.props.handleTitleChange(event.target.value,this.props.formTitle.description)
     }
     onDescriptionChange(event){
-        this.setState({description:event.target.value});
+        this.props.handleTitleChange(this.props.formTitle.title,event.target.value)
     }
     render(){
         return(
@@ -34,12 +30,12 @@ export default class Title extends React.Component {
                 <Col>
                     <Col>
                         <h1>
-                            {this.state.title}
+                            {this.props.formTitle.title}
                         </h1>
                     </Col>
                     <Col>
                         <p>
-                            {this.state.description}
+                            {this.props.formTitle.description}
                         </p>
                     </Col>
                     <Col>
