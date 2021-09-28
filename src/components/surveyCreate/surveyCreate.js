@@ -7,6 +7,7 @@ import {userSession} from '../../auth';
 import  Title  from './title.js';
 import Submit from './submit.js';
 import ThankYou from "./thankyou.js";
+import Question from './question';
 
 
 const storage = new Storage({ userSession });
@@ -28,17 +29,18 @@ export default class CreateSurvey extends React.Component{
                 formThankyou:{
                     thanks:'Thank you for your time!'
                 },
+                formQuestion:[],
                 link:''
         };
         this.someFunct = this.someFunct.bind(this);
         this.renderButtons = this.renderButtons.bind(this);
         this.renderTopButtons = this.renderTopButtons.bind(this);
         this.handleSubmitChange = this.handleSubmitChange.bind(this);
-        this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handleThankYouChange = this.handleThankYouChange.bind(this);
+        this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handlEditPreview = this.handlEditPreview.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.storageSession = this.storageSession.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.displayLink = this.displayLink.bind(this);
     }
     
@@ -51,6 +53,7 @@ export default class CreateSurvey extends React.Component{
         'Title And Description',
         'Submit Screen',
         'Thank You For Your Time',
+        'Question'
     ];
     topButtons = [
         'Design',        
@@ -62,7 +65,8 @@ export default class CreateSurvey extends React.Component{
                 {
                     'Title And Description': <Title formTitle = {this.state.formTitle} handleTitleChange={this.handleTitleChange}></Title>,
                     'Submit Screen':<Submit formSubmit = {this.state.formSubmit} handleSubmitChange={this.handleSubmitChange}></Submit>,
-                    'Thank You For Your Time':<ThankYou formThankyou = {this.state.formThankyou} handleThankYouChange={this.handleThankYouChange}></ThankYou>
+                    'Thank You For Your Time':<ThankYou formThankyou = {this.state.formThankyou} handleThankYouChange={this.handleThankYouChange}></ThankYou>,
+                    'Question': <Question></Question>
                 }
             return editPreview;
         }

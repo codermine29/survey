@@ -28,19 +28,13 @@ export default class Title extends React.Component {
                     </Form>
                 </Col>
                 <Col>
-                    <Col>
                         <h1>
                             {this.props.formTitle.title}
                         </h1>
-                    </Col>
-                    <Col>
                         <p>
                             {this.props.formTitle.description}
                         </p>
-                    </Col>
-                    <Col>
                         <Button variant='outline-danger'> Start </Button>
-                    </Col>
                 </Col>
             </>
         );

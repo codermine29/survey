@@ -25,8 +25,8 @@ export default class ThankYou extends React.Component {
                          <h1 variant='outline-danger'> {this.props.formThankyou.thanks}</h1>
                     </Col>
                     <Col>
-                    <img  src="/assets/images/logo.png" width="15%"></img>
-                        <p>Powered By Survey </p>
+                        <p>Powered By Survey</p>
+                        <img className='me-auto' src="/assets/images/logo.png" width="15%"></img>
                     </Col>
                     <Col>
                     </Col>
