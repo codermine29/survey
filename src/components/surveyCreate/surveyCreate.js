@@ -7,6 +7,7 @@ import {userSession} from '../../auth';
 import  Title  from './title.js';
 import Submit from './submit.js';
 import ThankYou from "./thankyou.js";
+import { v4 as uuidv4 } from 'uuid';
 
 
 const storage = new Storage({ userSession });
@@ -124,16 +125,75 @@ export default class CreateSurvey extends React.Component{
             thannkyou:this.state.formThankyou,
             submit:this.state.formThankyou
         }
+        // options
         const options = {
-            encrypt: false,
+            encrypt: true,
           };
-        let url ;
-        let fileUrl = storage.putFile('forms.json', JSON.stringify(form), options).then((c) => {
-            console.log(c);
-            url = c;
-            this.setState({link:c});
-        });
+          const decoptions = {
+            decrypt: true,
+          };
         
+        // check if forms list is already present
+        // let filepresent = false;
+        // storage.listFiles((filename) => {
+        //     if (filename === 'formsList.json') {
+        //         console.log(filename);
+        //         filepresent = true;
+        //       return false;
+        //     } else {
+        //         console.log(filename);
+        //       return true;
+        //     }
+        //   });
+        
+        // // add emty formslist file
+        // if(! (filepresent)) {
+        //     storage.putFile('formsList.json', JSON.stringify([]), options).then((c) => {
+        //     });
+        // }
+
+
+        storage.getFile('formsList.json', decoptions)   // getting previous data from formslist
+        .then(fileData => {
+            console.log('data'+fileData);
+        })
+        .catch(function (err) {
+            storage.putFile('formsList.json', JSON.stringify([]), options).then((c) => {console.log('Formslist file added')});
+        });
+
+
+        let url ;
+        let filename = uuidv4() + '.json';
+        storage.putFile(filename, JSON.stringify([]), options) // adding form data in a file
+        .then((c) => {
+            // console.log(c);
+            url = c;
+            storage.getFile('formsList.json', decoptions)   // getting previous data from formslist
+            .then(fileData => {
+
+
+                let formlistdata = {
+                    title:this.state.formTitle,
+                    url:c
+                }                
+                console.log('before' + JSON.stringify(fileData));
+                let obj = JSON.parse(fileData);
+                obj.push(formlistdata);
+                console.log('obj' + JSON.stringify(obj));
+                
+                storage.putFile('formsList.json', JSON.stringify(obj), options) // adding data to formslist
+                .then((c) => { 
+                    storage.getFile('formsList.json', decoptions) // checking if data is added?
+                    .then(fileData => {
+                        console.log('after' +  JSON.stringify(fileData));
+                        return;
+                    });
+                });  
+            });
+            
+              
+            this.setState({link:c});
+        });        
 
     }
     displayLink(){
