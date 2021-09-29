@@ -153,12 +153,15 @@ export default class CreateSurvey extends React.Component{
         // }
 
 
-        storage.getFile('formsList.json', decoptions)   // getting previous data from formslist
+        await storage.getFile('formsList.json', decoptions)   // getting previous data from formslist
         .then(fileData => {
             console.log('data'+fileData);
         })
-        .catch(function (err) {
+        .catch( (err)=>{
+            console.log('Creating file');
             storage.putFile('formsList.json', JSON.stringify([]), options).then((c) => {console.log('Formslist file added')});
+        }).catch(err=>{
+            console.log('the un handled error');
         });
 
 
