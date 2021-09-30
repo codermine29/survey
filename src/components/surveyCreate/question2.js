@@ -9,13 +9,13 @@ export default class Question extends React.Component {
 
     }
     onTitleChange(event){
-        this.props.handleQuestionChange(event.target.value,this.props.option1,this.props.option2)
+        this.props.handleQuestionChange(event.target.value,this.props.formQuestion.option1,this.props.formQuestion.option2)
     }
     onOption1Change(event){
-        this.props.handleQuestionChange(this.props.formTitle.title,event.target.value,this.props.option2)
+        this.props.handleQuestionChange(this.props.formQuestion.title,event.target.value,this.props.formQuestion.option2)
     }
     onOption2Change(event){
-        this.props.handleQuestionChange(this.props.formTitle.title,this.props.option1,event.target.value)
+        this.props.handleQuestionChange(this.props.formQuestion.title,this.props.formQuestion.option1,event.target.value)
     }
     render(){
         return( 

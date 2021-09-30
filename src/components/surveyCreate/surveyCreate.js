@@ -41,7 +41,7 @@ export default class CreateSurvey extends React.Component{
         this.renderButtons = this.renderButtons.bind(this);
         this.renderTopButtons = this.renderTopButtons.bind(this);
         this.handleSubmitChange = this.handleSubmitChange.bind(this);
- //       this.handleQuestionChange = this.handleQuestionChange.bind(this);
+        this.handleQuestionChange = this.handleQuestionChange.bind(this);
   //      this.renderQuestionButtons = this.renderQuestionButtons.bind(this);
         this.handleThankYouChange = this.handleThankYouChange.bind(this);
         this.handleTitleChange = this.handleTitleChange.bind(this);
@@ -74,7 +74,7 @@ export default class CreateSurvey extends React.Component{
                     'Title And Description': <Title formTitle = {this.state.formTitle} handleTitleChange={this.handleTitleChange}></Title>,
                     'Submit Screen':<Submit formSubmit = {this.state.formSubmit} handleSubmitChange={this.handleSubmitChange}></Submit>,
                     'Thank You For Your Time':<ThankYou formThankyou = {this.state.formThankyou} handleThankYouChange={this.handleThankYouChange}></ThankYou>,
-                    'Question': <Question formQuestion = {this.state.formQuestion} handleQuestionChange={this.handleTitleChange}></Question>,
+                    'Question': <Question formQuestion = {this.state.formQuestion} handleQuestionChange={this.handleQuestionChange}></Question>,
 
                 }
             return editPreview;
@@ -91,7 +91,7 @@ export default class CreateSurvey extends React.Component{
         }
         handleQuestionChange(title1,option11,option22){
     
-            this.setState({formTitle:{
+            this.setState({formQuestion:{
                 title:title1,
                 option1:option11,
                 option2:option22
@@ -152,7 +152,7 @@ export default class CreateSurvey extends React.Component{
             encrypt: false,
           };
           const decoptions = {
-            decrypt: true,
+            decrypt: false,
           };
         
         // check if forms list is already present
@@ -217,8 +217,8 @@ export default class CreateSurvey extends React.Component{
                 });  
             });
             
-              
-            this.setState({link:c});
+            let url2 = 'http://localhost:3000/survey/'+url.slice(32);
+            this.setState({link:url2});
         });        
 
     }
