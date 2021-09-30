@@ -9,7 +9,7 @@ export default class Submit extends React.Component {
     }
     onSubmitChange(event){
         this.props.handleSubmitChange(event.target.value,this.props.formSubmit.description)
-    }
+    } 
     onDescriptionChange(event){
         this.props.handleSubmitChange(this.props.formSubmit.submit,event.target.value)
 
