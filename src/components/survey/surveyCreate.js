@@ -7,10 +7,9 @@ import Submit from './submit.js';
 import ThankYou from "./thankyou.js";
 import Question from './question2';
 import { v4 as uuidv4 } from 'uuid';
-import { StringShortener } from 'string-shortener'
-const short = require('short-uuid');
 
-const ss = new StringShortener()
+
+
 const storage = new Storage({ userSession });
 
 export default class CreateSurvey extends React.Component{
@@ -189,7 +188,7 @@ export default class CreateSurvey extends React.Component{
 
 
         let url ;
-        let filename = short.generate() + '.json';
+        let filename = uuidv4() + '.json';
         storage.putFile(filename, JSON.stringify(form), options) // adding form data in a file
         .then((c) => {
             // console.log(c);
@@ -218,7 +217,7 @@ export default class CreateSurvey extends React.Component{
                     });
                 });  
             });
-         
+            
             let url2 = 'http://localhost:3000/survey/'+url.slice(32);
             this.setState({link:url2});
         });        

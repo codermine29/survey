@@ -33,7 +33,7 @@ import Settings from '../settings/settings.js';
         <div style={{display:'flex', height:'100%', overflow:'scroll initial'}}>
           {sideBar()}
           <Switch>
-              <Route path='/survey/:id' exact component={Survey}></Route>
+              <Route path='/survey/:id/:id2' exact component={Survey}></Route>
               <Route path='/create' exact component={CreateSurvey}></Route>
               <Route path='/dashboard' exact component={Dashboard}></Route>
               <Route path='/templates' exact component={Templates}></Route>
