@@ -176,7 +176,7 @@ export default class CreateSurvey extends React.Component{
 
 
                 let formlistdata = {
-                    title:this.state.formTitle,
+                    title:this.state.formTitle.title,
                     url:c
                 }                
                 console.log('before' + JSON.stringify(fileData));
