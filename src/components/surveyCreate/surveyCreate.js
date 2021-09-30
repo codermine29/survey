@@ -1,13 +1,13 @@
 import React from "react";
 import { Storage } from '@stacks/storage';
-import { Container,Row,Col,Nav , Button, Alert } from "react-bootstrap";
-import { Redirect } from 'react-router-dom';
-
+import { Container,Row,Col,Nav , Button, Alert, Form } from "react-bootstrap";
 import {userSession} from '../../auth';
 import  Title  from './title.js';
 import Submit from './submit.js';
 import ThankYou from "./thankyou.js";
+import Question from './question2';
 import { v4 as uuidv4 } from 'uuid';
+
 
 
 const storage = new Storage({ userSession });
@@ -29,18 +29,27 @@ export default class CreateSurvey extends React.Component{
                 formThankyou:{
                     thanks:'Thank you for your time!'
                 },
+                formQuestion:{
+                    title:'',
+                    option1:'',
+                    option2:''
+                },               
                 link:''
         };
         this.someFunct = this.someFunct.bind(this);
+ //       this.addQuestion = this.addQuestion.bind(this);
         this.renderButtons = this.renderButtons.bind(this);
         this.renderTopButtons = this.renderTopButtons.bind(this);
         this.handleSubmitChange = this.handleSubmitChange.bind(this);
-        this.handleTitleChange = this.handleTitleChange.bind(this);
+        this.handleQuestionChange = this.handleQuestionChange.bind(this);
+  //      this.renderQuestionButtons = this.renderQuestionButtons.bind(this);
         this.handleThankYouChange = this.handleThankYouChange.bind(this);
+        this.handleTitleChange = this.handleTitleChange.bind(this);
         this.handlEditPreview = this.handlEditPreview.bind(this);
-        this.handleSubmit = this.handleSubmit.bind(this);
         this.storageSession = this.storageSession.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
         this.displayLink = this.displayLink.bind(this);
+
     }
     
     storageSession(){
@@ -52,6 +61,7 @@ export default class CreateSurvey extends React.Component{
         'Title And Description',
         'Submit Screen',
         'Thank You For Your Time',
+        'Question'
     ];
     topButtons = [
         'Design',        
@@ -63,7 +73,9 @@ export default class CreateSurvey extends React.Component{
                 {
                     'Title And Description': <Title formTitle = {this.state.formTitle} handleTitleChange={this.handleTitleChange}></Title>,
                     'Submit Screen':<Submit formSubmit = {this.state.formSubmit} handleSubmitChange={this.handleSubmitChange}></Submit>,
-                    'Thank You For Your Time':<ThankYou formThankyou = {this.state.formThankyou} handleThankYouChange={this.handleThankYouChange}></ThankYou>
+                    'Thank You For Your Time':<ThankYou formThankyou = {this.state.formThankyou} handleThankYouChange={this.handleThankYouChange}></ThankYou>,
+                    'Question': <Question formQuestion = {this.state.formQuestion} handleQuestionChange={this.handleQuestionChange}></Question>,
+
                 }
             return editPreview;
         }
@@ -74,6 +86,15 @@ export default class CreateSurvey extends React.Component{
             this.setState({formTitle:{
                 title:title1,
                 description:description1
+            }});
+            
+        }
+        handleQuestionChange(title1,option11,option22){
+    
+            this.setState({formQuestion:{
+                title:title1,
+                option1:option11,
+                option2:option22
             }});
             
         }
@@ -109,9 +130,9 @@ export default class CreateSurvey extends React.Component{
         return this.topButtons.map((name,index)=>{
             return(
                 <Col>                          
-                <Nav.Item>
-                    <Button variant = "outline-dark" active={true}>{name}</Button>
-                </Nav.Item>
+                    <Nav.Item>
+                        <Button variant = "outline-dark" active={true}>{name}</Button>
+                    </Nav.Item>
               </Col>
             )
         })
@@ -123,14 +144,15 @@ export default class CreateSurvey extends React.Component{
         let form = {
             title:this.state.formTitle,
             thannkyou:this.state.formThankyou,
-            submit:this.state.formThankyou
+            submit:this.state.formThankyou,
+            question:this.state.formQuestion
         }
         // options
         const options = {
-            encrypt: true,
+            encrypt: false,
           };
           const decoptions = {
-            decrypt: true,
+            decrypt: false,
           };
         
         // check if forms list is already present
@@ -167,7 +189,7 @@ export default class CreateSurvey extends React.Component{
 
         let url ;
         let filename = uuidv4() + '.json';
-        storage.putFile(filename, JSON.stringify([]), options) // adding form data in a file
+        storage.putFile(filename, JSON.stringify(form), options) // adding form data in a file
         .then((c) => {
             // console.log(c);
             url = c;
@@ -177,7 +199,8 @@ export default class CreateSurvey extends React.Component{
 
                 let formlistdata = {
                     title:this.state.formTitle,
-                    url:c
+                    url:c,
+                    fileName:filename
                 }                
                 console.log('before' + JSON.stringify(fileData));
                 let obj = JSON.parse(fileData);
@@ -194,8 +217,8 @@ export default class CreateSurvey extends React.Component{
                 });  
             });
             
-              
-            this.setState({link:c});
+            let url2 = 'http://localhost:3000/survey/'+url.slice(32);
+            this.setState({link:url2});
         });        
 
     }
@@ -208,6 +231,37 @@ export default class CreateSurvey extends React.Component{
                 </Row>
         )
     }
+/*    addQuestion(){
+        let q = {
+            question: '',
+            options: ['',''],
+        }
+        let qs = this.state.formQuestions.concat(q);
+        this.setState({formQuestions:qs})
+    }
+    renderQuestionButtons(){
+        console.log(this.state.formQuestions.length)
+            return this.state.formQuestions.map((obj,index)=>{
+              return(  
+                    <Question handleQuestionChange={this.handleQuestionChange} question = {obj} index = {index}> </Question>
+              )
+            
+        })
+    }
+   handleQuestionChange(qestionObj, index){
+
+        let q = {
+            question: qestionObj.question,
+            options: [qestionObj.option1,qestionObj.option2]
+        }
+        console.log(q);
+        let ref = JSON.parse(JSON.stringify(this.state.formQuestions));
+        ref.index=q;
+        this.setState({formQuestions:ref})
+        console.log(this.state.formQuestions);
+
+    } 
+*/
     render(){
         return(
                 <Container variant='light'>
@@ -230,10 +284,29 @@ export default class CreateSurvey extends React.Component{
                             <div className="d-grid gap-2">
                                 {this.renderButtons()}
                             </div>
+
+
                         </Col>
                         {this.handlEditPreview()[this.state.active.name]}
                     </Row>
+{                        <br/>
+ /*                       <hr/>
+                        <br/>
+                        <Row>
+                           <Col variant='warning'>  
+                                            <h4>No Of Questions?</h4>
+                                            <i style={{cursor:'pointer'}} onClick={this.addQuestion} class="fas fa-plus-square"></i>
+                                                <h3>{this.state.formQuestions.length}</h3>
+                                            <i style={{cursor:'pointer'}} class="fas fa-minus-square"></i>
+                                    </Col>
+                            <Col>    
+                                {this.renderQuestionButtons()}
+                            </Col>
+                        </Row>
+                    
+                */}
                 </Container>
+
 
         );
     }
