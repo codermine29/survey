@@ -16,7 +16,7 @@ export default class Title extends React.Component {
         return( 
             <Row bg='secondary'>
 
-                        <h1>
+                        <h1 className="h3 p-5" >
                             {this.props.formTitle.title}
                         </h1>
                         <p>

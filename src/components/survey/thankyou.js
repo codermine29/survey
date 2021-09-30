@@ -12,13 +12,9 @@ export default class ThankYou extends React.Component {
             <>
 
                 <Row>
-                    <Col>
                          <h1 variant='outline-danger'> {this.props.formThankyou.thanks}</h1>
-                    </Col>
-                    <Col>
-                        <p>Powered By Survey</p>
-                        <img className='me-auto' src="/assets/images/logo.png" width="15%"></img>
-                    </Col>
+                        <p>Powered By Survey   <img  style={{width:'3vw',block:'inline'}}  src="/assets/images/logo.png" width="15%"></img></p>
+                       
                 </Row>
             </>
         );

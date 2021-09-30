@@ -48,11 +48,14 @@ class Survey2 extends React.Component {
     }
     render(){
         return(
-            <Container className="justify-content-center">
-                <Title className="justify-content-center" formTitle ={this.state.file['title']}></Title>
-                <Question  className="justify-content-center" formQuestion={this.state.file['question']}></Question>
-                <ThankYou className="justify-content-center" formThankyou = {this.state.file.thannkyou}></ThankYou>
-                <Submit className="justify-content-center" formSubmit={this.state.file.submit}></Submit>
+            <Container style={{width:'75vw'}} className="justify-content-center">
+                <Title className="h3 p-5 justify-content-center" formTitle ={this.state.file['title']}></Title>
+                <br/>
+                <Question  className="h3 p-5 justify-content-center" formQuestion={this.state.file['question']}></Question>
+                <br/>
+                <ThankYou className="h3 p-5 justify-content-center" formThankyou = {this.state.file.thannkyou}></ThankYou>
+                <br/>
+                <Submit className="h3 p-5 justify-content-center" formSubmit={this.state.file.submit}></Submit>
             </Container>
         )
     }
