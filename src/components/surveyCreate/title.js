@@ -13,7 +13,7 @@ export default class Title extends React.Component {
         this.props.handleTitleChange(this.props.formTitle.title,event.target.value)
     }
     render(){
-        return(
+        return( 
             <>
                 <Col>
                     <Form>

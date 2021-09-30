@@ -1,5 +1,6 @@
 import React from 'react'
 import { Container,Row,Col,Nav , Button , Form} from "react-bootstrap";
+
 export default class ThankYou extends React.Component {
     constructor(props){
         super(props);
@@ -27,8 +28,6 @@ export default class ThankYou extends React.Component {
                     <Col>
                         <p>Powered By Survey</p>
                         <img className='me-auto' src="/assets/images/logo.png" width="15%"></img>
-                    </Col>
-                    <Col>
                     </Col>
                 </Col>
             </>
