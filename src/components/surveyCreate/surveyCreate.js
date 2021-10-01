@@ -2,7 +2,6 @@ import React from "react";
 import { Storage } from '@stacks/storage';
 import { Container,Row,Col,Nav , Button, Alert } from "react-bootstrap";
 import { Redirect } from 'react-router-dom';
-
 import {userSession} from '../../auth';
 import  Title  from './title.js';
 import Submit from './submit.js';
@@ -152,6 +151,7 @@ export default class CreateSurvey extends React.Component{
         //     });
         // }
 
+        // storage.putFile('formsList.json', JSON.stringify([]), options).then((c) => {console.log('Formslist file added')});
 
         await storage.getFile('formsList.json', decoptions)   // getting previous data from formslist
         .then(fileData => {
@@ -164,7 +164,6 @@ export default class CreateSurvey extends React.Component{
             console.log('the un handled error');
         });
 
-
         let url ;
         let filename = uuidv4() + '.json';
         storage.putFile(filename, JSON.stringify([]), options) // adding form data in a file
@@ -174,9 +173,9 @@ export default class CreateSurvey extends React.Component{
             storage.getFile('formsList.json', decoptions)   // getting previous data from formslist
             .then(fileData => {
 
-
                 let formlistdata = {
-                    title:this.state.formTitle,
+                    title:this.state.formTitle.title,
+                    time:new Date().toLocaleString(),
                     url:c
                 }                
                 console.log('before' + JSON.stringify(fileData));
@@ -192,9 +191,7 @@ export default class CreateSurvey extends React.Component{
                         return;
                     });
                 });  
-            });
-            
-              
+            });            
             this.setState({link:c});
         });        
 
