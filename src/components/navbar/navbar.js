@@ -18,7 +18,7 @@ export default class Nav1 extends React.Component{
                 height="30"
                 className="d-inline-block align-top"
               />{' '}
-            Survey
+           <Link to=''> Survey </Link>
           </Navbar.Brand>
           <Navbar.Collapse id="basic-navbar-nav">
             <Nav className="me-auto">

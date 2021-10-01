@@ -51,7 +51,7 @@ class Survey2 extends React.Component {
             <Container style={{width:'75vw'}} className="justify-content-center">
                 <Title className="h3 p-5 justify-content-center" formTitle ={this.state.file['title']}></Title>
                 <br/>
-                <Question  className="h3 p-5 justify-content-center" formQuestion={this.state.file['question']}></Question>
+               {/*  <Question  className="h3 p-5 justify-content-center" formQuestion={this.state.file['question']}></Question> */}
                 <br/>
                 <ThankYou className="h3 p-5 justify-content-center" formThankyou = {this.state.file.thannkyou}></ThankYou>
                 <br/>

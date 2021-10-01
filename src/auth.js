@@ -9,7 +9,7 @@ export function authenticate() {
   showConnect({
     appDetails: {
       name: 'Surveys',
-      icon: window.location.origin + 'assets/images/logo.png',
+      icon: window.location.origin + 'assets/images/logo.ico',
     },
     redirectTo: '/',
     onFinish: () => {

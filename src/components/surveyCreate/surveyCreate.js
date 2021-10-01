@@ -125,14 +125,14 @@ export default class CreateSurvey extends React.Component{
         let form = {
             title:this.state.formTitle,
             thannkyou:this.state.formThankyou,
-            submit:this.state.formThankyou
+            submit:this.state.formSubmit
         }
         // options
         const options = {
-            encrypt: true,
+            encrypt: false,
           };
           const decoptions = {
-            decrypt: true,
+            decrypt: false,
           };
         
         // check if forms list is already present
@@ -178,9 +178,10 @@ export default class CreateSurvey extends React.Component{
             .then(fileData => {
 
                 let formlistdata = {
+
                     title:this.state.formTitle.title,
-                    time:new Date().toLocaleString(),
-                    url:c
+                    url:c,
+                    fileName:filename
 
                 }                
                 console.log('before' + JSON.stringify(fileData));
@@ -196,15 +197,14 @@ export default class CreateSurvey extends React.Component{
                         return;
                     });
                 });  
-
+            });
          
-            let url2 = 'http://localhost:3000/survey/'+url.slice(32);
+            let url2 = 'http://safe-survey.herokuapp.com/survey/'+url.slice(32);
             this.setState({link:url2});
 
-            });
-        })
-     }         
+        });        
 
+    }
     displayLink(){
         return(
                 <Row> 

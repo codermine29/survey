@@ -5,10 +5,10 @@ import { Container,Table,input } from 'react-bootstrap';
 
 const storage = new Storage({ userSession });
 const options = {
-    encrypt: true,
+    encrypt: false,
 };
 const decoptions = {
-  decrypt: true,}
+  decrypt: false,}
 
 export default class Dashboard extends React.Component {
     constructor(props){
