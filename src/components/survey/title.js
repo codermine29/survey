@@ -14,29 +14,16 @@ export default class Title extends React.Component {
     }
     render(){
         return( 
-            <>
-                <Col>
-                    <Form>
-                        <Form.Group className="mb-3" controlId="formBasicEmail">
-                            <Form.Control type="Text" placeholder="Enter Title" onChange={this.onTitleChange}/>
-                        </Form.Group>
+            <Row bg='secondary'>
 
-                        <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Control type="text" placeholder="description" onChange={this.onDescriptionChange}/>
-                        </Form.Group>
-
-                    </Form>
-                </Col>
-                <Col>
-                        <h1>
+                        <h1 className="h3 p-5" >
                             {this.props.formTitle.title}
                         </h1>
                         <p>
                             {this.props.formTitle.description}
                         </p>
                         <Button variant='outline-danger'> Start </Button>
-                </Col>
-            </>
+            </Row>
         );
     }
 }

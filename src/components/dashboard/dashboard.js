@@ -8,8 +8,8 @@ const options = {
     encrypt: true,
 };
 const decoptions = {
-  decrypt: true,
-};
+  decrypt: true,}
+
 export default class Dashboard extends React.Component {
     constructor(props){
         super(props);
@@ -21,11 +21,13 @@ export default class Dashboard extends React.Component {
 
     componentDidMount() {
 
-        storage.getFile('formsList.json', decoptions) 
+
+        storage.getFile('formsList.json', decoptions)
         .then(fileData => {
             console.log(JSON.parse(fileData));
-            this.setState({obj:JSON.parse(fileData)})
-            return;
+            let data = JSON.parse(fileData);
+            this.setState({obj:data});
+
         });
         
     }
@@ -51,6 +53,7 @@ export default class Dashboard extends React.Component {
                         </thead>                        
                         <tbody>
                             {this.state.obj.map(item =>
+
                             <tr>
                                 <td> <a href='/details/:id'>{item.title}</a></td>
                                 <td> OPEN </td>

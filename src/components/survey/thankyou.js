@@ -4,22 +4,18 @@ import { Container,Row,Col,Nav , Button , Form} from "react-bootstrap";
 export default class ThankYou extends React.Component {
     constructor(props){
         super(props);
-        console.log(this.props.formThankyou)
     }
+
 
     render(){
         return(
             <>
 
-                <Col>
-                    <Col>
+                <Row>
                          <h1 variant='outline-danger'> {this.props.formThankyou.thanks}</h1>
-                    </Col>
-                    <Col>
-                        <p>Powered By Survey</p>
-                        <img className='me-auto' src="/assets/images/logo.png" width="15%"></img>
-                    </Col>
-                </Col>
+                        <p>Powered By Survey   <img  style={{width:'3vw',block:'inline'}}  src="/assets/images/logo.png" width="15%"></img></p>
+                       
+                </Row>
             </>
         );
     }

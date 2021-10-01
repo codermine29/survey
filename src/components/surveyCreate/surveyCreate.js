@@ -7,7 +7,10 @@ import  Title  from './title.js';
 import Submit from './submit.js';
 import ThankYou from "./thankyou.js";
 import { v4 as uuidv4 } from 'uuid';
+import { StringShortener } from 'string-shortener'
+const short = require('short-uuid');
 
+const ss = new StringShortener()
 
 const storage = new Storage({ userSession });
 
@@ -165,8 +168,9 @@ export default class CreateSurvey extends React.Component{
         });
 
         let url ;
-        let filename = uuidv4() + '.json';
-        storage.putFile(filename, JSON.stringify([]), options) // adding form data in a file
+        let filename = short.generate() + '.json';
+        storage.putFile(filename, JSON.stringify(form), options) // adding form data in a file
+
         .then((c) => {
             // console.log(c);
             url = c;
@@ -177,6 +181,7 @@ export default class CreateSurvey extends React.Component{
                     title:this.state.formTitle.title,
                     time:new Date().toLocaleString(),
                     url:c
+
                 }                
                 console.log('before' + JSON.stringify(fileData));
                 let obj = JSON.parse(fileData);
@@ -191,11 +196,15 @@ export default class CreateSurvey extends React.Component{
                         return;
                     });
                 });  
-            });            
-            this.setState({link:c});
-        });        
 
-    }
+         
+            let url2 = 'http://localhost:3000/survey/'+url.slice(32);
+            this.setState({link:url2});
+
+            });
+        })
+     }         
+
     displayLink(){
         return(
                 <Row> 
