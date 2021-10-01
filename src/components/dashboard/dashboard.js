@@ -24,10 +24,14 @@ export default class Dashboard extends React.Component {
 
         storage.getFile('formsList.json', decoptions)
         .then(fileData => {
-            console.log(JSON.parse(fileData));
+            console.log((fileData));
             let data = JSON.parse(fileData);
             this.setState({obj:data});
 
+        })
+        .catch(err=> {
+            let data = [{"title":"","time":"","url":""}];
+            this.setState({obj:data});
         });
         
     }
