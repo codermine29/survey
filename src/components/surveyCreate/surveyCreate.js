@@ -8,6 +8,7 @@ import Submit from './submit.js';
 import ThankYou from "./thankyou.js";
 import { v4 as uuidv4 } from 'uuid';
 import { StringShortener } from 'string-shortener'
+import Question from './question2';
 const short = require('short-uuid');
 
 const ss = new StringShortener()
@@ -31,6 +32,10 @@ export default class CreateSurvey extends React.Component{
                 formThankyou:{
                     thanks:'Thank you for your time!'
                 },
+                formQuestion:{
+                    question:'',
+                    option:''
+                },
                 link:''
         };
         this.someFunct = this.someFunct.bind(this);
@@ -43,6 +48,7 @@ export default class CreateSurvey extends React.Component{
         this.handleSubmit = this.handleSubmit.bind(this);
         this.storageSession = this.storageSession.bind(this);
         this.displayLink = this.displayLink.bind(this);
+        this.handleQuestionChange = this.handleQuestionChange.bind(this);
     }
     
     storageSession(){
@@ -54,6 +60,7 @@ export default class CreateSurvey extends React.Component{
         'Title And Description',
         'Submit Screen',
         'Thank You For Your Time',
+        'Question'
     ];
     topButtons = [
         'Design',        
@@ -65,7 +72,8 @@ export default class CreateSurvey extends React.Component{
                 {
                     'Title And Description': <Title formTitle = {this.state.formTitle} handleTitleChange={this.handleTitleChange}></Title>,
                     'Submit Screen':<Submit formSubmit = {this.state.formSubmit} handleSubmitChange={this.handleSubmitChange}></Submit>,
-                    'Thank You For Your Time':<ThankYou formThankyou = {this.state.formThankyou} handleThankYouChange={this.handleThankYouChange}></ThankYou>
+                    'Thank You For Your Time':<ThankYou formThankyou = {this.state.formThankyou} handleThankYouChange={this.handleThankYouChange}></ThankYou>,
+                    'Question':<Question formQuestion={this.state.formQuestion} handleQuestionChange={this.handleQuestionChange}></Question>
                 }
             return editPreview;
         }
@@ -79,6 +87,16 @@ export default class CreateSurvey extends React.Component{
             }});
             
         }
+
+        handleQuestionChange(question,option1,option2){
+    
+            this.setState({formQuestion:{
+                question,
+                option1,
+                option2
+            }});
+            console.log(this.state.formQuestion);
+        }        
 
         handleSubmitChange(submit1,description1){
     
@@ -125,7 +143,8 @@ export default class CreateSurvey extends React.Component{
         let form = {
             title:this.state.formTitle,
             thannkyou:this.state.formThankyou,
-            submit:this.state.formSubmit
+            submit:this.state.formSubmit,
+            question:this.state.formQuestion
         }
         // options
         const options = {
@@ -199,7 +218,7 @@ export default class CreateSurvey extends React.Component{
                 });  
             });
          
-            let url2 = 'http://safe-survey.herokuapp.com/survey/'+url.slice(32);
+            let url2 = 'localhost:3000/survey/'+url.slice(32);
             this.setState({link:url2});
 
         });        

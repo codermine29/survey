@@ -12,10 +12,10 @@ export default class Question extends React.Component {
         this.props.handleQuestionChange(event.target.value,this.props.formQuestion.option1,this.props.formQuestion.option2)
     }
     onOption1Change(event){
-        this.props.handleQuestionChange(this.props.formQuestion.title,event.target.value,this.props.formQuestion.option2)
+        this.props.handleQuestionChange(this.props.formQuestion.question,event.target.value,this.props.formQuestion.option2)
     }
     onOption2Change(event){
-        this.props.handleQuestionChange(this.props.formQuestion.title,this.props.formQuestion.option1,event.target.value)
+        this.props.handleQuestionChange(this.props.formQuestion.question,this.props.formQuestion.option1,event.target.value)
     }
     render(){
         return( 
@@ -27,7 +27,7 @@ export default class Question extends React.Component {
                         </Form.Group>
 
                         <Form.Group className="mb-3" controlId="formBasicPassword">
-                            <Form.Control type="text" placeholder="option" onChange={this.onOption1Change}/>\
+                            <Form.Control type="text" placeholder="option" onChange={this.onOption1Change}/>
                             <Form.Control type="text" placeholder="option" onChange={this.onOption2Change}/>                            
                         </Form.Group>
 
@@ -35,12 +35,18 @@ export default class Question extends React.Component {
                 </Col>
                 <Col>
                         <h1>
-                            {this.props.formQuestion.title}
+                            {this.props.formQuestion.question}
                         </h1>
-                        <p>
-                            {this.props.formQuestion.option1}
-                        </p>
-                        <p>{this.props.formQuestion.option2}</p>
+                            <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1"/>
+                                        <label class="form-check-label" for="flexRadioDefault1">
+                                            {this.props.formQuestion.option1}
+                                        </label>
+                                        </div>
+                                        <div class="form-check">
+                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault2" checked />
+                                        <label class="form-check-label" for="flexRadioDefault2"> {this.props.formQuestion.option2} </label>
+                    </div>
                 </Col>
             </>
         );
